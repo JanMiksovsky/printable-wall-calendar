@@ -3,7 +3,7 @@ Displays an entire year in a 4x3 grid.
 -->
 
 <link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../../quetzal/elements/quetzal-calendar-month.html">
+<link rel="import" href="../../quetzal/elements/quetzal-calendar-month-with-headings.html">
 
 <polymer-element name="year-calendar" attributes="year">
 
@@ -18,6 +18,22 @@ Displays an entire year in a 4x3 grid.
   }
 
   /* Override generic calendar styling */
+  quetzal-calendar-month-with-headings {
+    /*display: table;*/
+    display: block;
+    margin-bottom: 1em;
+    margin-right: 1em;
+  }
+  quetzal-calendar-month-with-headings ^ quetzal-month-and-year {
+    color: darkred;
+    text-align: left !important;
+  }
+  quetzal-calendar-month-with-headings ^ quetzal-month-and-year ^ #year {
+    display: none;
+  }
+  .dayOfWeek.weekend {
+    color: #aaa !important;
+  }
   quetzal-calendar-week.outsideMonth {
     display: table-row !important;
     visibility: hidden;
@@ -33,31 +49,35 @@ Displays an entire year in a 4x3 grid.
     color: #aaa !important;
   }
 
-  quetzal-calendar-month {
-    display: table;
-    margin-bottom: 1em;
-    margin-right: 1em;
+  /* Only show headings for first three months */
+  quetzal-calendar-month-with-headings ^ quetzal-days-of-week {
+    display: none !important;
+  }
+  #month1 ^ quetzal-days-of-week,
+  #month2 ^ quetzal-days-of-week,
+  #month3 ^ quetzal-days-of-week {
+    display: table-header-group !important;
   }
   </style>
   <h1 id="year"></h1>
   <div id="monthGrid">
     <div class="monthColumn">
-      <quetzal-calendar-month id="month1"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month4"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month7"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month10"></quetzal-calendar-month>
+      <quetzal-calendar-month-with-headings id="month1" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month4" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month7" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month10" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
     </div>
     <div class="monthColumn">
-      <quetzal-calendar-month id="month2"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month5"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month8"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month11"></quetzal-calendar-month>
+      <quetzal-calendar-month-with-headings id="month2" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month5" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month8" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month11" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
     </div>
     <div class="monthColumn">
-      <quetzal-calendar-month id="month3"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month6"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month9"></quetzal-calendar-month>
-      <quetzal-calendar-month id="month12"></quetzal-calendar-month>
+      <quetzal-calendar-month-with-headings id="month3" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month6" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month9" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
+      <quetzal-calendar-month-with-headings id="month12" daysOfWeekFormat="namesAbbr"></quetzal-calendar-month-with-headings>
     </div>
   </div>
 </template>
