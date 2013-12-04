@@ -1,0 +1,28 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="year-calendar" attributes="year">
+
+<template>
+  <h1 id="year"></h1>
+</template>
+
+<script>
+Polymer( "year-calendar", {
+
+  applyAuthorStyles: true,
+
+  ready: function() {
+    if ( this.year == null ) {
+      var date = new Date();
+      this.year = date.getFullYear();
+    }
+  },
+
+  yearChanged: function() {
+    this.$.year.textContent = this.year;
+  }
+
+});
+</script>
+
+</polymer-element>
