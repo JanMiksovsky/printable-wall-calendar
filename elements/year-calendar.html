@@ -1,3 +1,7 @@
+<!--
+Displays an entire year in a 4x3 grid.
+-->
+
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../../quetzal/elements/quetzal-calendar-month.html">
 
@@ -5,26 +9,52 @@
 
 <template>
   <style>
+  .monthGrid {
+    display: table-row;
+  }
+
+  .monthColumn {
+    display: table-cell;
+  }
+
+  /* Override generic calendar styling */
+  quetzal-calendar-day {
+    font-weight: bold !important;
+  }
   quetzal-calendar-day.today {
     color: inherit !important;
-    font-weight: inherit !important;
+  }
+  quetzal-calendar-day.weekend.insideMonth {
+    color: gray !important;
   }
 
   quetzal-calendar-month {
     display: table;
+    margin-bottom: 2em;
+    margin-right: 2em;
   }
   </style>
   <h1 id="year"></h1>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
-  <quetzal-calendar-month></quetzal-calendar-month>
+  <div id="monthGrid">
+    <div class="monthColumn">
+      <quetzal-calendar-month id="month1"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month4"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month7"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month10"></quetzal-calendar-month>
+    </div>
+    <div class="monthColumn">
+      <quetzal-calendar-month id="month2"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month5"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month8"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month11"></quetzal-calendar-month>
+    </div>
+    <div class="monthColumn">
+      <quetzal-calendar-month id="month3"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month6"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month9"></quetzal-calendar-month>
+      <quetzal-calendar-month id="month12"></quetzal-calendar-month>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -40,7 +70,21 @@ Polymer( "year-calendar", {
   },
 
   get months() {
-    return this.shadowRoot.querySelectorAll( "quetzal-calendar-month" ).array();
+    // return this.shadowRoot.querySelectorAll( "quetzal-calendar-month" ).array();
+    return [
+      this.$.month1,
+      this.$.month2,
+      this.$.month3,
+      this.$.month4,
+      this.$.month5,
+      this.$.month6,
+      this.$.month7,
+      this.$.month8,
+      this.$.month9,
+      this.$.month10,
+      this.$.month11,
+      this.$.month12
+    ]
   },
 
   yearChanged: function() {
