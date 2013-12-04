@@ -1,0 +1,12 @@
+{
+  "name": "annual-calendar",
+  "version": "0.0.1",
+  "dependencies": {
+    "globalize": "*",
+    "platform": "Polymer/platform"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ]
+}
