@@ -9,8 +9,8 @@ Displays an entire year in a 4x3 grid.
 
 <template>
   <style>
-  .monthGrid {
-    display: table-row;
+  #monthGrid {
+    display: table;
   }
 
   .monthColumn {
@@ -18,20 +18,25 @@ Displays an entire year in a 4x3 grid.
   }
 
   /* Override generic calendar styling */
+  quetzal-calendar-week.outsideMonth {
+    display: table-row !important;
+    visibility: hidden;
+  }
   quetzal-calendar-day {
-    font-weight: bold !important;
+    font-weight: bold;
+    padding: 2px 3px !important;
   }
   quetzal-calendar-day.today {
     color: inherit !important;
   }
   quetzal-calendar-day.weekend.insideMonth {
-    color: gray !important;
+    color: #aaa !important;
   }
 
   quetzal-calendar-month {
     display: table;
-    margin-bottom: 2em;
-    margin-right: 2em;
+    margin-bottom: 1em;
+    margin-right: 1em;
   }
   </style>
   <h1 id="year"></h1>
