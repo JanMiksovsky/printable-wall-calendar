@@ -1,9 +1,30 @@
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../../quetzal/elements/quetzal-calendar-month.html">
 
 <polymer-element name="year-calendar" attributes="year">
 
 <template>
+  <style>
+  quetzal-calendar-day.today {
+    color: inherit !important;
+    font-weight: inherit !important;
+  }
+
+  quetzal-calendar-month {
+    display: table;
+  }
+  </style>
   <h1 id="year"></h1>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
+  <quetzal-calendar-month></quetzal-calendar-month>
 </template>
 
 <script>
@@ -18,8 +39,24 @@ Polymer( "year-calendar", {
     }
   },
 
+  get months() {
+    return this.shadowRoot.querySelectorAll( "quetzal-calendar-month" ).array();
+  },
+
   yearChanged: function() {
-    this.$.year.textContent = this.year;
+    this._refresh();
+  },
+
+  _refresh: function() {
+    var year = this.year;
+    this.$.year.textContent = year;
+    this.months.forEach( function( month, index ) {
+      var date = new Date();
+      date.setFullYear( year );
+      date.setMonth( index );
+      date.setDate( 1 );
+      month.date = date;
+    });
   }
 
 });
