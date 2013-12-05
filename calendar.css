@@ -1,6 +1,19 @@
 body {
   color: black;
   font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 21px;
+  font-size: 15px;
   margin: 2em;
+}
+
+year-calendar {
+  font-size: 21px;
+}
+
+@media print {
+  * {
+    font-style: italic;
+  }
+  .noprint {
+    display: none;
+  }
 }
