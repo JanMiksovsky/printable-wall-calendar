@@ -168,17 +168,28 @@ Polymer( "year-calendar", {
       firstDateOfMonth.setDate( 1 );
       month.date = firstDateOfMonth;
 
-      // Determine whether the month requires six weeks to display: has more
-      // than 29 days, and last day is earlier in week than first day.
       // Get last day of month by going to first day of next month and backing up a day.
       var lastDateOfMonth = new Date( firstDateOfMonth.getTime() );
       lastDateOfMonth.setMonth( lastDateOfMonth.getMonth() + 1 );
       lastDateOfMonth.setDate( lastDateOfMonth.getDate() - 1 );
+
+      // Determine whether the month requires six weeks to display: has more
+      // than 29 days, and the last day is to the left of the first day.
       var daysInMonth = lastDateOfMonth.getDate();
       var sixWeekMonth = ( daysInMonth > 29
-        && lastDateOfMonth.getDay() < firstDateOfMonth.getDay() );
+        && this._dayPosition( lastDateOfMonth ) < this._dayPosition( firstDateOfMonth ) );
       month.classList.toggle( "sixWeekMonth", sixWeekMonth );
-    });
+    }.bind( this ));
+  },
+
+  // Return the horizontal position (0 = leftmost) of the day in a week. In
+  // the U.S., this is the same as the date's getDay() value, but in many
+  // cultures that position weeks starting at a different day of the week, this
+  // value will be different.
+  _dayPosition: function( date ) {
+    var culture = this.culture;
+    var firstDayOfWeek = culture ? culture.calendar.firstDay : 0;
+    return ( date.getDay() - firstDayOfWeek + 7 ) % 7;
   }
 
 });
