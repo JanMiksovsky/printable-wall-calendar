@@ -10,9 +10,6 @@ year-calendar {
 }
 
 @media print {
-  * {
-    font-style: italic;
-  }
   .noprint {
     display: none;
   }
