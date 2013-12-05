@@ -5,7 +5,7 @@ Displays an entire year in a 4x3 grid.
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../../quetzal/elements/quetzal-calendar-month-with-headings.html">
 
-<polymer-element name="year-calendar" attributes="year">
+<polymer-element name="year-calendar" attributes="culture year">
 
 <template>
 
@@ -128,6 +128,20 @@ Polymer( "year-calendar", {
 
   applyAuthorStyles: true,
 
+  cultureChanged: function() {
+    var culture = this.culture;
+    if ( culture ) {
+      var weekHeaders = this.$.daysOfWeekHeader.querySelectorAll( "quetzal-days-of-week" ).array();
+      weekHeaders.forEach( function( weekHeader ) {
+        weekHeader.culture = culture;
+      });
+      this.months.forEach( function( month ) {
+        month.culture = culture;
+      });
+      this._refresh();
+    }
+  },
+
   ready: function() {
     if ( this.year == null ) {
       var date = new Date();
@@ -144,6 +158,7 @@ Polymer( "year-calendar", {
   },
 
   _refresh: function() {
+    console.log( "refresh" );
     var year = this.year;
     this.$.year.textContent = year;
     this.months.forEach( function( month, index ) {
