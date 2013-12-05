@@ -15,9 +15,9 @@ Displays an entire year in a 4x3 grid.
   }
 
   #year {
-    color: darkred;
-    font-size: 30px;
-    margin: 0 0 0.25em 0;
+    color: #990000;
+    font-size: 36px;
+    margin: 0 0 0.5em 0;
   }
 
   #monthGrid {
@@ -30,12 +30,18 @@ Displays an entire year in a 4x3 grid.
   }
   .monthsRow > * {
     display: table-cell;
-    padding-bottom: 0.75em;
+  }
+  .monthsRow > *:not(:last-child) {
     padding-right: 1em;
   }
+  .monthsRow:not(:last-child) > * {
+    padding-bottom: 0.75em;
+  }
 
-  #daysOfWeekHeader > quetzal-days-of-week {
-    font-size: 0.8em;
+  #daysOfWeekHeader quetzal-days-of-week {
+    display: table;
+    font-size: 0.65em;
+    width: 100%;
   }
 
   /* Override generic calendar styling */
@@ -43,7 +49,7 @@ Displays an entire year in a 4x3 grid.
     padding: 0 1px !important;
   }
   quetzal-days-of-week ^ .dayOfWeek.weekend {
-    color: #aaa !important;
+    color: #a6a6a6 !important;
   }
 
   /* Have the month header for six week months nestle in the empty space
@@ -56,7 +62,7 @@ Displays an entire year in a 4x3 grid.
   }
 
   quetzal-calendar-month-with-headings ^ quetzal-month-and-year {
-    color: darkred;
+    color: #990000;
     text-align: left !important;
   }
   quetzal-calendar-month-with-headings ^ quetzal-month-and-year ^ #year {
@@ -70,22 +76,28 @@ Displays an entire year in a 4x3 grid.
 
   quetzal-calendar-day {
     font-weight: bold;
-    padding: 2px 0px !important;
+    padding: 3px 3px !important;
   }
   quetzal-calendar-day.today {
     color: inherit !important;
   }
   quetzal-calendar-day.weekend.insideMonth {
-    color: #aaa !important;
+    color: #a6a6a6 !important;
   }
   </style>
 
   <h1 id="year"></h1>
   <div id="monthGrid">
     <div class="monthsRow" id="daysOfWeekHeader">
-      <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
-      <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
-      <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
+      <div>
+        <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
+      </div>
+      <div>
+        <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
+      </div>
+      <div>
+        <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
+      </div>
     </div>
     <div class="monthsRow">
       <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>

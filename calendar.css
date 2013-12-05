@@ -1,11 +1,6 @@
 body {
-  color: #333;
+  color: black;
   font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  margin: 3em;
-}
-
-h1 {
-  color: darkred;
-  font-size: 30px;
+  font-size: 21px;
+  margin: 2em;
 }
