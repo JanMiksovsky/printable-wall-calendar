@@ -8,7 +8,7 @@ Displays an entire year in a 4x3 grid.
 <polymer-element name="year-calendar" attributes="year">
 
 <template>
-  
+
   <style>
   :host {
     display: inline-block;
@@ -38,6 +38,15 @@ Displays an entire year in a 4x3 grid.
   }
   quetzal-days-of-week ^ .dayOfWeek.weekend {
     color: #aaa !important;
+  }
+
+  /* Have the month header for six week months nestle in the empty space
+     to the left of the first day of the month */
+  quetzal-calendar-month-with-headings {
+    position: relative;
+  }
+  quetzal-calendar-month-with-headings.sixWeekMonth ^ quetzal-month-and-year {
+    position: absolute;
   }
 
   quetzal-calendar-month-with-headings ^ quetzal-month-and-year {
@@ -120,11 +129,22 @@ Polymer( "year-calendar", {
     var year = this.year;
     this.$.year.textContent = year;
     this.months.forEach( function( month, index ) {
-      var date = new Date();
-      date.setFullYear( year );
-      date.setMonth( index );
-      date.setDate( 1 );
-      month.date = date;
+      var firstDateOfMonth = new Date();
+      firstDateOfMonth.setFullYear( year );
+      firstDateOfMonth.setMonth( index );
+      firstDateOfMonth.setDate( 1 );
+      month.date = firstDateOfMonth;
+
+      // Determine whether the month requires six weeks to display: has more
+      // than 29 days, and last day is earlier in week than first day.
+      // Get last day of month by going to first day of next month and backing up a day.
+      var lastDateOfMonth = new Date( firstDateOfMonth.getTime() );
+      lastDateOfMonth.setMonth( lastDateOfMonth.getMonth() + 1 );
+      lastDateOfMonth.setDate( lastDateOfMonth.getDate() - 1 );
+      var daysInMonth = lastDateOfMonth.getDate();
+      var sixWeekMonth = ( daysInMonth > 29
+        && lastDateOfMonth.getDay() < firstDateOfMonth.getDay() );
+      month.classList.toggle( "sixWeekMonth", sixWeekMonth );
     });
   }
 
