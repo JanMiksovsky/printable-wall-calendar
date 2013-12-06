@@ -4,12 +4,24 @@
 
 <meta charset="utf-8">
 
-<title>Build your own printable wall calendar</title>
+<title>Print a handy wall calendar</title>
 
 <script src="components/platform/platform.js"></script>
 
 <link rel="stylesheet" href="calendar.css">
 <link rel="import" href="elements/calendar-app.html">
+
+<style>
+body {
+  background-image: url(resources/cork.jpg);
+}
+
+@media print {
+  body {
+    background-image: none;
+  }
+}
+</style>
 
 </head>
 

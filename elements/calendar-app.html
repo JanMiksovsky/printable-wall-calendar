@@ -9,20 +9,62 @@ Lets user preview, configure, and print an annual wall calendar.
 <polymer-element name="calendar-app" attributes="culture" noscript>
 
 <template>
+
   <style>
+  :host {
+    font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+  }
+
+  #container {
+    padding: 2em;
+  }
+
+  @media screen {  
+    year-calendar {
+      background: white;
+      box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
+      padding: 2em;
+    }
+  }
+
   globalize-culture {
     display: block;
   }
+
+  #toolbar {
+    margin-bottom: 1em;
+  }
+
+  #tips {
+    background: #fffacd;
+    box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
+    margin-top: 2em;
+    padding: 1em;
+    width: 300px;
+  }
+
+  #tips h3 {
+    margin-top: 0;
+  }
   </style>
-  <globalize-culture culture="{{culture}}"></globalize-culture>
-  <year-calendar culture="{{culture}}"></year-calendar>
-  <div class="noprint">
-    <h3>Printing tips</h3>
-    <ul>
-      <li>In the print dialog, turn <b>off</b> "Headers and Footers".</li>
-      <li>Also in the print dialog, turn <b>on</b> "Background colors and images".</li>
-    </ul>
-  </div>
+
+  <div id="container">
+    <div id="toolbar" class="noprint">
+      <globalize-culture culture="{{culture}}"></globalize-culture>
+    </div>
+
+    <year-calendar culture="{{culture}}"></year-calendar>
+
+    <div id="tips" class="noprint">
+      <b>Tip:</b> In the print dialog…
+      <ul>
+        <li>Turn <b>off</b> "Headers and Footers".</li>
+        <li>Turn <b>on</b> "Background colors and images".</li>
+      </ul>
+    </div>
+</div>
+
 </template>
 
 </polymer-element>
