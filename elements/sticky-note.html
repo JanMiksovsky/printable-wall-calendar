@@ -1,0 +1,25 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="sticky-note" noscript>
+
+<template>
+
+  <style>
+  :host {
+    background: #fffacd;
+    box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
+    display: block;
+    padding: 1em;
+    width: 300px;
+  }
+
+  ::content > :first-child {
+    margin-top: 0;
+  }
+  </style>
+
+  <content></content>
+
+</template>
+
+</polymer-element>

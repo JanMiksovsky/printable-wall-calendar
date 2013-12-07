@@ -5,8 +5,9 @@ Lets user preview, configure, and print an annual wall calendar.
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../../quetzal/elements/globalize-culture.html">
 <link rel="import" href="year-calendar.html">
+<link rel="import" href="sticky-note.html">
 
-<polymer-element name="calendar-app" attributes="culture" noscript>
+<polymer-element name="calendar-app" attributes="culture">
 
 <template>
 
@@ -20,6 +21,14 @@ Lets user preview, configure, and print an annual wall calendar.
     padding: 2em;
   }
 
+  #container > :not(last-child) {
+    margin-bottom: 2em;
+  }
+
+  year-calendar {
+    font-size: 21px;
+  }
+
   @media screen {  
     year-calendar {
       background: white;
@@ -31,40 +40,40 @@ Lets user preview, configure, and print an annual wall calendar.
   globalize-culture {
     display: block;
   }
-
-  #toolbar {
-    margin-bottom: 1em;
-  }
-
-  #tips {
-    background: #fffacd;
-    box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
-    margin-top: 2em;
-    padding: 1em;
-    width: 300px;
-  }
-
-  #tips h3 {
-    margin-top: 0;
-  }
   </style>
 
   <div id="container">
-    <div id="toolbar" class="noprint">
+
+    <sticky-note id="intro" class="noprint">
+      <h3>Print a handy wall calendar!</h3>
       <globalize-culture culture="{{culture}}"></globalize-culture>
-    </div>
+    </sticky-note>
 
-    <year-calendar culture="{{culture}}"></year-calendar>
+    <year-calendar id="nextYearCalendar" culture="{{culture}}"></year-calendar>
+    <year-calendar id="currentYearCalendar" culture="{{culture}}"></year-calendar>
 
-    <div id="tips" class="noprint">
+    <sticky-note id="tips" class="noprint">
       <b>Tip:</b> In the print dialog…
       <ul>
         <li>Turn <b>off</b> "Headers and Footers".</li>
         <li>Turn <b>on</b> "Background colors and images".</li>
       </ul>
-    </div>
-</div>
+    </sticky-note>
+
+  </div>
 
 </template>
+
+<script>
+Polymer( "calendar-app", {
+
+  ready: function() {
+    // Set date of calendar for next year.
+    var date = new Date();
+    this.$.nextYearCalendar.year = date.getFullYear() + 1;
+  }
+
+});
+</script>
 
 </polymer-element>

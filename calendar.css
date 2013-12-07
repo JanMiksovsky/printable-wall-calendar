@@ -1,6 +1,5 @@
-
-year-calendar {
-  font-size: 21px;
+body {
+  margin: 0;
 }
 
 @media print {
