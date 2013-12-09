@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+
+<title>globalize-culture</title>
+
+<script src="../platform/platform.js"></script>
+<link rel="import" href="globalize-culture.html">
+
+<script>
+window.addEventListener( "WebComponentsReady", function() {
+  var culturePicker = document.querySelector( "#culturePicker" );
+  var cultureSettings = document.querySelector( "#cultureSettings" );
+  culturePicker.addEventListener( "globalize-culture-changed", function() {
+    cultureSettings.textContent = JSON.stringify( culturePicker.culture, null, " " );
+  });
+});
+</script>
+
+</head>
+
+<body>
+  <globalize-culture id="culturePicker">Pick your preferred language/location settings:</globalize-culture>
+  <pre id="cultureSettings"></pre>
+</body>
+
+</html>

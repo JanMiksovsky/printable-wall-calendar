@@ -2,8 +2,8 @@
   "name": "annual-calendar",
   "version": "0.0.1",
   "dependencies": {
-    "globalize": "*",
-    "polymer": "Polymer/polymer"
+    "globalize-culture": "JanMiksovsky/globalize-culture#master",
+    "polymer": "Polymer/polymer#master"
   },
   "ignore": [
     "**/.*",
