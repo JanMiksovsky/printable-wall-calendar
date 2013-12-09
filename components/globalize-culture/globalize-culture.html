@@ -374,6 +374,12 @@ This can be used as an invisible helper component, or as a UI component.
 </template>
 
 <script>
+// Stash the current file location so later we can load culture files relative
+// to this path.
+GlobalizeCulture = {
+  _scriptPath: document._currentScript.ownerDocument.href
+};
+
 Polymer( "globalize-culture", {
 
   cultureChanged: function() {
@@ -400,8 +406,12 @@ Polymer( "globalize-culture", {
       // Already loaded.
       callback();
     } else {    
-      // Dynamically load.
-      var url = "../globalize/lib/cultures/globalize.culture." + cultureIdentifier + ".js";
+      // Dynamically load the culture file from the sibling Globalize component.
+      var cultureSettingsUrl = "../globalize/lib/cultures/globalize.culture." + cultureIdentifier + ".js";
+      // Find the culture file relative to this file.
+      // TODO: Use document.currentScript once that's working. For now (12/9/13),
+      // Polymer's recommendation is to use _currentScript.
+      var url = HTMLImports.path.resolveUrl( GlobalizeCulture._scriptPath, cultureSettingsUrl );
       var script = document.createElement( "script" );
       script.addEventListener( "load", function() {
         callback();
