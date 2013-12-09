@@ -1,0 +1,13 @@
+{
+  "name": "quetzal-calendar-day",
+  "description": "Component for a single day in a calendar",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "quetzal-element": "JanMiksovsky/quetzal-element#master"
+  },
+  "ignore": [
+    "**/.*"
+  ]
+}

@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "dependencies": {
     "globalize-culture": "JanMiksovsky/globalize-culture#master",
-    "polymer": "Polymer/polymer#master"
+    "polymer": "Polymer/polymer#master",
+    "quetzal-calendar-month-with-headings": "JanMiksovsky/quetzal-calendar-month-with-headings#master",
+    "quetzal-days-of-week": "JanMiksovsky/quetzal-days-of-week#master"
   },
   "ignore": [
     "**/.*",

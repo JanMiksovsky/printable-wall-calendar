@@ -1,0 +1,99 @@
+<!--
+  
+Base class for some elements in the Quetzal collection.
+
+This provides some services which aren't provided by the browser or Polymer.
+Right now, this includes:
+
+* Generic styling. A "generic" attribute, which defaults to true, allows
+  elements to receive baseline styling that can easily be removed by setting
+  "generic" to false.
+
+* contentChangedCallback. Called when an element's light DOM content changes.
+
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+
+<polymer-element name="quetzal-element" attributes="generic">
+
+<script>
+// Quetzal helpers.
+window.Quetzal = {
+
+  // Sugar to allow quick delegation of a method to a sub-element.
+  alias: function( accessChain, sideEffectFn ) {
+    return function() {  
+      var result = this;
+      var keys = accessChain.split( "." );
+      var hasArguments = ( arguments.length > 0 );
+      for ( var i = 0, length = keys.length; i < length; i++ ) {
+        var key = keys[i];
+        if (i === keys.length - 1 ) {
+          result[ key ].apply( result, arguments );
+          if ( hasArguments && sideEffectFn ) {
+            sideEffectFn.apply( this, arguments );
+          }
+          result = this;
+        } else {
+          result = result[ key ];
+        }
+      }
+      return result;
+    }
+  },
+
+  // Extend the given set of members with the Quetzal helpers and return the
+  // result.
+  extend: function( options ) {
+    options = options || {};
+    for ( var key in Quetzal ) {
+      if ( !options[ key ] ) {
+        options[ key ] = Quetzal[ key ];
+      }
+    }
+    return options;
+  },
+
+  log: function( s ) {
+    if ( console ) {
+      console.log( this.localName + ": " + s );
+    }
+  },
+
+  ready: function() {
+    this.super();
+    this.setup();
+  },
+
+  setup: function() {
+    if ( this.contentChangedCallback ) {
+      this._observeContentChanged();
+      if ( this.childNodes.length > 0 ) {
+        // Consider any initial content of a new element to be "changed" content
+        // and invoke the callback so the element can do any corresponding setup.
+        this.contentChangedCallback();
+      }
+    }
+    if ( this.generic == null ) {
+      this.generic = true;
+    }
+  },
+
+  _observeContentChanged: function() {
+    var observer = new MutationObserver( function() {
+      this.contentChangedCallback();
+    }.bind( this ));
+    observer.observe( this, {
+      characterData: true,
+      childList: true,
+      subtree: true
+    });
+  }
+
+};
+
+Polymer( "quetzal-element", Quetzal.extend());
+</script>
+
+</polymer-element>

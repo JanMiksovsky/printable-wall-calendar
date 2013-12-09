@@ -1,0 +1,14 @@
+{
+  "name": "quetzal-month-and-year",
+  "description": "Component that shows a culture's name for the current month and the year",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "quetzal-element": "JanMiksovsky/quetzal-element#master",
+    "quetzal-month-name": "JanMiksovsky/quetzal-month-name#master"
+  },
+  "ignore": [
+    "**/.*"
+  ]
+}

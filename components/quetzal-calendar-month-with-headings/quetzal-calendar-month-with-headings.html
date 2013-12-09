@@ -1,0 +1,90 @@
+<!--
+A month calendar with headings for month name, year, and days of week.
+-->
+
+<link rel="import" href="../quetzal-element/quetzal-element.html">
+<link rel="import" href="../quetzal-month-and-year/quetzal-month-and-year.html">
+<link rel="import" href="../quetzal-days-of-week/quetzal-days-of-week.html">
+<link rel="import" href="../quetzal-calendar-month/quetzal-calendar-month.html">
+
+<polymer-element name="quetzal-calendar-month-with-headings" extends="quetzal-element" attributes="culture date daysOfWeekFormat">
+
+<template>
+
+  <style>
+  :host {
+    display: inline-block;
+  }
+
+  #monthAndYear {
+    display: block;
+  }
+
+  #monthTable {
+    border-collapse: collapse;
+    display: table;
+    width: 100%;
+  }
+
+  #daysOfWeek {
+    display: table-header-group;
+  }
+
+  /* Generic styling */
+  :host([generic]:host) #monthAndYear {
+    font-weight: bold;
+    padding: 4px;
+    text-align: center;
+  }
+
+  :host([generic]:host) #daysOfWeek {
+    font-size: smaller;
+  }
+
+  :host([generic]:host) .dayOfWeek {
+    padding: 4px;
+  }
+  </style>
+
+  <quetzal-month-and-year id="monthAndYear"></quetzal-month-and-year>
+  <div id="monthTable">
+    <quetzal-days-of-week id="daysOfWeek" format="{{daysOfWeekFormat}}"></quetzal-days-of-week>
+    <quetzal-calendar-month id="calendar"></quetzal-calendar-month>
+  </div>
+
+</template>
+
+<script>
+Polymer( "quetzal-calendar-month-with-headings", {
+
+  applyAuthorStyles: true,
+
+  cultureChanged: function() {
+    var culture = this.culture;
+    if ( culture ) {
+      this.$.monthAndYear.culture = culture;
+      this.$.daysOfWeek.culture = culture;
+      this.$.calendar.culture = culture;
+    }
+  },
+
+  dateChanged: function() {
+    var date = this.date;
+    this.$.monthAndYear.date = date;
+    this.$.calendar.date = date;
+  },
+
+  daysOfWeekFormat: "namesShort",
+
+  ready: function() {
+    this.super();
+    if ( !this.date ) {
+      // By default, show the current month.
+      this.date = new Date();
+    }
+  }
+
+});
+</script>
+
+</polymer-element>

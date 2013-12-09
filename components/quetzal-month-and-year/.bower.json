@@ -1,0 +1,23 @@
+{
+  "name": "quetzal-month-and-year",
+  "description": "Component that shows a culture's name for the current month and the year",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "quetzal-element": "JanMiksovsky/quetzal-element#master",
+    "quetzal-month-name": "JanMiksovsky/quetzal-month-name#master"
+  },
+  "ignore": [
+    "**/.*"
+  ],
+  "homepage": "https://github.com/JanMiksovsky/quetzal-month-and-year",
+  "_release": "5a775f0a56",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "5a775f0a56d3bc58e192a920d1e2ea8c71f2b656"
+  },
+  "_source": "git://github.com/JanMiksovsky/quetzal-month-and-year.git",
+  "_target": "master",
+  "_originalSource": "JanMiksovsky/quetzal-month-and-year"
+}

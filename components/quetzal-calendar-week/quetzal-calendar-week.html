@@ -1,0 +1,129 @@
+<!--
+Shows a single calendar week.
+-->
+
+<link rel="import" href="../quetzal-element/quetzal-element.html">
+<link rel="import" href="../quetzal-calendar-day/quetzal-calendar-day.html">
+
+<polymer-element name="quetzal-calendar-week" extends="quetzal-element" attributes="culture date dayElementTag">
+
+<template>
+
+  <style>
+  :host {
+    display: table-row;
+  }
+
+  :host > :not(style) {
+    display: table-cell;
+    width: 14.285%; /* One seventh */
+  }
+  </style>
+
+  <quetzal-calendar-day class="firstDayOfWeek"></quetzal-calendar-day>
+  <quetzal-calendar-day></quetzal-calendar-day>
+  <quetzal-calendar-day></quetzal-calendar-day>
+  <quetzal-calendar-day></quetzal-calendar-day>
+  <quetzal-calendar-day></quetzal-calendar-day>
+  <quetzal-calendar-day></quetzal-calendar-day>
+  <quetzal-calendar-day class="lastDayOfWeek"></quetzal-calendar-day>
+
+</template>
+
+<script>
+Polymer( "quetzal-calendar-week", {
+
+  applyAuthorStyles: true,
+
+  cultureChanged: function() {
+    this._refresh();
+  },
+
+  dateChanged: function() {
+    this._refresh();
+  },
+
+  // dayControlForDate: function(date) {
+  //   var dayIndex, days, week;
+  //   days = (function() {
+  //     var _i, _len, _ref, _results;
+  //     _ref = this.segments();
+  //     _results = [];
+  //     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+  //       week = _ref[_i];
+  //       dayIndex = week.daysSinceFirstDayOfWeek(date);
+  //       _results.push(week.days()[dayIndex]);
+  //     }
+  //     return _results;
+  //   }).call(this);
+  //   return $().add(days).control();
+  // },
+
+  // The elements for the days in the week, returned as an array.
+  get days() {
+    // Return all children but the style node.
+    return this.shadowRoot.querySelectorAll( ":not(style)" ).array();
+  },
+
+  dayElementTag: "quetzal-calendar-day",
+
+  dayElementTagChanged: function() {
+    var dayTemplate = document.createElement( this.dayElementTag );
+    var shadowRoot = this.shadowRoot;
+    this.days.forEach( function( day, i ) {
+      var newDay = dayTemplate.cloneNode();
+      newDay.classList.toggle( "firstDayOfWeek", i === 0 );
+      newDay.classList.toggle( "lastDayOfWeek", i === 6 );
+      shadowRoot.replaceChild( newDay, day );
+    }.bind( this ));
+    this._refresh();
+  },
+
+  daysSinceFirstDayOfWeek: function( date ) {
+    return ( date.getDay() - this.firstDayOfWeek() + 7 ) % 7;
+  },
+
+  // Return the date of the first day of the week that contains the given date.
+  firstDateOfWeek: function( date ) {
+    var d = QuetzalCalendarDay.offsetDateByDays( date, -this.daysSinceFirstDayOfWeek( date ) );
+    return QuetzalCalendarDay.midnightOnDate( d );
+  },
+
+  // Return the index of the "first" day of the week in the current culture.
+  // In the U.S., this is 0 ( Sunday ), but in many places it's 1 (Monday).
+  firstDayOfWeek: function() {
+    var culture = this.culture;
+    return culture ? culture.calendar.firstDay : 0;
+  },
+
+  ready: function() {
+    this.super();
+    if ( !this.date && typeof QuetzalCalendarDay.today !== "undefined" ) {
+      // If no date is supplied, default to the current week.
+      // REVIEW: This default behavior can cause unnecessary recalcs if a week
+      // is created and then shortly thereafter a different date is set.
+      this.date = QuetzalCalendarDay.today();
+    }
+  },
+
+  // Set the dates on all controls in the week.
+  _refresh: function() {
+    var referenceDate = this.date;
+    var referenceYear = referenceDate.getFullYear();
+    var referenceMonth = referenceDate.getMonth();
+    var dateStart = this.firstDateOfWeek( referenceDate );
+    this.days.forEach( function( day, i ) {
+      var date = QuetzalCalendarDay.offsetDateByDays( dateStart, i );
+      day.date = date;
+      // Apply inside/outside month styles to days that fall outside of the
+      // month of the reference date for this week.
+      var insideMonth = ( date.getFullYear() === referenceYear && date.getMonth() === referenceMonth );
+      day.classList.toggle( "insideMonth", insideMonth );
+      day.classList.toggle( "outsideMonth", !insideMonth );
+    });
+  }
+
+});
+</script>
+
+</polymer-element>

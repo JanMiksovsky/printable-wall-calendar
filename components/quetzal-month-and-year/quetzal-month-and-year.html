@@ -1,0 +1,41 @@
+<!--
+Shows a culture's name for the current month and the year.
+-->
+
+<link rel="import" href="../quetzal-element/quetzal-element.html">
+<link rel="import" href="../quetzal-month-name/quetzal-month-name.html">
+
+<polymer-element name="quetzal-month-and-year" extends="quetzal-element" attributes="culture date">
+
+<template>
+  <quetzal-month-name id="monthName"></quetzal-month-name>
+  <span id="year"></span>
+</template>
+
+<script>
+Polymer( "quetzal-month-and-year", {
+
+  applyAuthorStyles: true,
+
+  cultureChanged: function() {
+    this.$.monthName.culture = this.culture;
+  },
+
+  dateChanged: function() {
+    var date = this.date;
+    this.$.monthName.month = date.getMonth();
+    this.$.year.textContent = date.getFullYear();
+  },
+
+  ready: function() {
+    this.super();
+    if ( !this.date ) {
+      // By default show the current month and year.
+      this.date = new Date();
+    }
+  }
+
+});
+</script>
+
+</polymer-element>

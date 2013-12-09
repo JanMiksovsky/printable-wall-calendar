@@ -1,0 +1,22 @@
+{
+  "name": "quetzal-month-name",
+  "description": "Component for a single day in a calendar",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "quetzal-element": "JanMiksovsky/quetzal-element#master"
+  },
+  "ignore": [
+    "**/.*"
+  ],
+  "homepage": "https://github.com/JanMiksovsky/quetzal-month-name",
+  "_release": "1027128805",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1027128805e44c809bf202827762c6461ff8b51f"
+  },
+  "_source": "git://github.com/JanMiksovsky/quetzal-month-name.git",
+  "_target": "master",
+  "_originalSource": "JanMiksovsky/quetzal-month-name"
+}

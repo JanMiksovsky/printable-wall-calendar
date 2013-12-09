@@ -1,11 +1,10 @@
 {
-  "name": "globalize-culture",
-  "description": "Component for selecting and managing a Globalize culture",
+  "name": "quetzal-element",
+  "description": "Base class for some elements in the Quetzal collection",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "globalize": "*",
     "polymer": "Polymer/polymer#master"
   },
   "ignore": [

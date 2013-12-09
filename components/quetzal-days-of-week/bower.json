@@ -1,12 +1,11 @@
 {
-  "name": "globalize-culture",
+  "name": "quetzal-days-of-week",
   "description": "Component for selecting and managing a Globalize culture",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "globalize": "*",
-    "polymer": "Polymer/polymer#master"
+    "quetzal-element": "JanMiksovsky/quetzal-element#master"
   },
   "ignore": [
     "**/.*"

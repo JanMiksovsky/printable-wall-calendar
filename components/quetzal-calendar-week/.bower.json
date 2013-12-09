@@ -1,0 +1,22 @@
+{
+  "name": "quetzal-calendar-week",
+  "description": "Component that shows a single calendar week",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "quetzal-element": "JanMiksovsky/quetzal-element#master"
+  },
+  "ignore": [
+    "**/.*"
+  ],
+  "homepage": "https://github.com/JanMiksovsky/quetzal-calendar-week",
+  "_release": "4f02549640",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4f02549640d60fbfa41a032a0d6df5888309f042"
+  },
+  "_source": "git://github.com/JanMiksovsky/quetzal-calendar-week.git",
+  "_target": "master",
+  "_originalSource": "JanMiksovsky/quetzal-calendar-week"
+}
