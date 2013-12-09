@@ -3,10 +3,10 @@ Lets user preview, configure, and print an annual wall calendar.
 -->
 
 <link rel="import" href="../components/polymer/polymer.html">
-<!-- <link rel="import" href="../../quetzal/globalize-culture/globalize-culture.html"> -->
 <link rel="import" href="../components/globalize-culture/globalize-culture.html">
-<link rel="import" href="year-calendar.html">
 <link rel="import" href="sticky-note.html">
+<link rel="import" href="world-map.html">
+<link rel="import" href="year-calendar.html">
 
 <polymer-element name="calendar-app" attributes="culture">
 
@@ -24,6 +24,10 @@ Lets user preview, configure, and print an annual wall calendar.
 
   #container > :not(last-child) {
     margin-bottom: 2em;
+  }
+
+  world-map {
+    width: 400px;
   }
 
   year-calendar {
@@ -44,6 +48,8 @@ Lets user preview, configure, and print an annual wall calendar.
   </style>
 
   <div id="container">
+
+    <world-map></world-map>
 
     <sticky-note id="intro" class="noprint">
       <h3>Print a handy wall calendar!</h3>
