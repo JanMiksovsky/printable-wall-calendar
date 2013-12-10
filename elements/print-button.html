@@ -1,0 +1,28 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/quetzal-button/quetzal-button.html">
+
+<polymer-element name="print-button" noscript>
+
+<template>
+  <style>
+  #icon {
+    height: 20px;
+    width: 20px;
+  }
+
+  #icon {
+    opacity: 0.5;
+    vertical-align: middle;
+  }
+
+  quetzal-button:hover #icon {
+    opacity: 1.0;
+  }
+  </style>
+  <quetzal-button quiet>
+    <img id="icon" src="../resources/printer.png">
+    <span>Print</span>
+  </quetzal-button>
+</template>
+
+</polymer-element>
