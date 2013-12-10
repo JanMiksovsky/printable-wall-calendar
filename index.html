@@ -15,6 +15,18 @@ body {
   margin: 0;
 }
 
+#loading {
+  margin-top: 300px;
+  text-align: center;
+}
+#loading span {
+  background: #fffacd;
+  box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
+  font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  padding: 1.5em;
+}
+
 @media print {
   body {
     background-image: none;
@@ -22,9 +34,19 @@ body {
 }
 </style>
 
+<script>
+window.addEventListener( "WebComponentsReady", function() {
+  var loading = document.querySelector( "#loading" );
+  loading.style.display = "none";
+});
+</script>
+
 </head>
 
 <body>
+  <div id="loading">
+    <span>Just a second…</span>
+  </div>
   <calendar-app></calendar-app>
 </body>
 
