@@ -3,6 +3,7 @@ Lets user preview, configure, and print an annual wall calendar.
 -->
 
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/quetzal-button/quetzal-button.html">
 <link rel="import" href="intro-note.html">
 <link rel="import" href="sticky-note.html">
 <link rel="import" href="world-map.html">
@@ -18,6 +19,7 @@ Lets user preview, configure, and print an annual wall calendar.
   }
 
   :host,
+  button,
   input,
   select {
     font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -80,7 +82,7 @@ Lets user preview, configure, and print an annual wall calendar.
     <tr id="yearRowNext">
       <td colspan="2">
         <year-calendar id="calendarNext" culture="{{culture}}">
-          <button class="noprint" on-click="{{printNextYear}}">Print</button>
+          <quetzal-button class="noprint" on-click="{{printNextYear}}" quiet>Print</quetzal-button>
         </year-calendar>
       </td>
     </tr>
@@ -88,7 +90,7 @@ Lets user preview, configure, and print an annual wall calendar.
     <tr id="yearRowCurrent" class="noprint">
       <td colspan="2">
         <year-calendar id="calendarCurrent" culture="{{culture}}">
-          <button class="noprint" on-click="{{printCurrentYear}}">Print</button>
+          <quetzal-button class="noprint" on-click="{{printCurrentYear}}" quiet>Print</quetzal-button>
         </year-calendar>
       </td>
     </tr>

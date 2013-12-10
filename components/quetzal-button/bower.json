@@ -1,0 +1,13 @@
+{
+  "name": "quetzal-button",
+  "description": "Button component with a simple generic style",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "quetzal-element": "JanMiksovsky/quetzal-element#master"
+  },
+  "ignore": [
+    "**/.*"
+  ]
+}

@@ -4,6 +4,7 @@
   "dependencies": {
     "globalize-culture": "JanMiksovsky/globalize-culture#master",
     "polymer": "Polymer/polymer#master",
+    "quetzal-button": "JanMiksovsky/quetzal-button#master",
     "quetzal-calendar-month-with-headings": "JanMiksovsky/quetzal-calendar-month-with-headings#master",
     "quetzal-days-of-week": "JanMiksovsky/quetzal-days-of-week#master"
   },
