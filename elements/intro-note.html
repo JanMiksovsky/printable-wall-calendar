@@ -1,31 +1,44 @@
-<link rel="import" href="sticky-note.html">
+<link rel="import" href="../components/polymer/polymer.html">
 
-<polymer-element name="intro-note" extends="sticky-note" noscript>
+<polymer-element name="intro-note" noscript>
 
 <template>
+
   <style>
+  :host {
+    background: #fffacd;
+    box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
+    box-sizing: border-box;
+    display: block;
+    padding: 1.5em;
+  }
+
+  ::content > :first-child {
+    margin-top: 0;
+  }
+
   li {
     margin-bottom: 0.5em;
     margin-left: -1em; /* Unindent */
   }
   </style>
-  <shadow>
-    <h2>Printable Wall Calendar</h2>
-    <p>
-      This calendar can quickly answer two questions that often come up in
-      scheduling discussions:
-    </p>
-    <ol>
-      <li>
-        <b>On which day of the week will a given date fall?</b>
-        Example: Is the 15th of next month on a weekend?
-      </li>
-      <li>
-        <b>What is the date of a given day of the week?</b>
-        Example: What date is Thursday next week?
-      </li>
-    </ol>
-  </shadow>
+
+  <h2>Printable Wall Calendar</h2>
+  <p>
+    This calendar can quickly answer two questions that often come up in
+    scheduling discussions:
+  </p>
+  <ol>
+    <li>
+      <b>On which day of the week will a given date fall?</b>
+      Example: Is the 15th of next month on a weekend?
+    </li>
+    <li>
+      <b>What is the date of a given day of the week?</b>
+      Example: What date is Thursday next week?
+    </li>
+  </ol>
+
 </template>
 
 </polymer-element>
