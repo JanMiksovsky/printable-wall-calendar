@@ -3,7 +3,6 @@ Lets user preview, configure, and print an annual wall calendar.
 -->
 
 <link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../components/globalize-culture/globalize-culture.html">
 <link rel="import" href="sticky-note.html">
 <link rel="import" href="world-map.html">
 <link rel="import" href="year-calendar.html">
@@ -13,7 +12,9 @@ Lets user preview, configure, and print an annual wall calendar.
 <template>
 
   <style>
-  :host {
+  :host,
+  input,
+  select {
     font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
   }
@@ -24,6 +25,7 @@ Lets user preview, configure, and print an annual wall calendar.
 
   #container > :not(last-child) {
     margin-bottom: 2em;
+    margin-right: 2em;
   }
 
   world-map {
@@ -49,12 +51,11 @@ Lets user preview, configure, and print an annual wall calendar.
 
   <div id="container">
 
-    <world-map></world-map>
-
     <sticky-note id="intro" class="noprint">
       <h3>Print a handy wall calendar!</h3>
-      <globalize-culture culture="{{culture}}"></globalize-culture>
     </sticky-note>
+
+    <world-map culture="{{culture}}"></world-map>
 
     <year-calendar id="nextYearCalendar" culture="{{culture}}"></year-calendar>
     <year-calendar id="currentYearCalendar" culture="{{culture}}"></year-calendar>

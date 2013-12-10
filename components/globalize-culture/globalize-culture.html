@@ -382,6 +382,8 @@ GlobalizeCulture = {
 
 Polymer( "globalize-culture", {
 
+  applyAuthorStyles: true,
+
   cultureChanged: function() {
     this.dispatchEvent( new CustomEvent( "globalize-culture-changed" ) );
   },

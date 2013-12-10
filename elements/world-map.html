@@ -1,6 +1,7 @@
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/globalize-culture/globalize-culture.html">
 
-<polymer-element name="world-map" noscript>
+<polymer-element name="world-map" attributes="culture">
 
 <template>
 
@@ -9,16 +10,38 @@
     background: white;
     box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
     display: inline-block;
+    position: relative;
   }
 
-  img {
+  #map {
     display: block;
+    opacity: 0.75;
     width: 100%;
+  }
+
+  #cultureContainer {
+    background: white;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    position: absolute;
+    right: 0;
   }
   </style>
 
-  <img src="../resources/map.jpg">
+  <img id="map" src="../resources/map.jpg">
+  <div id="cultureContainer">
+  <globalize-culture id="cultureSelector" culture="{{culture}}">
+    <div>Pick your preferred language/location:</div>
+  </globalize-culture>
+  </div>
 
 </template>
+
+<script>
+Polymer( "world-map", {
+  applyAuthorStyles: true
+});
+</script>
 
 </polymer-element>
