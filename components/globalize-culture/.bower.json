@@ -11,11 +11,11 @@
     "**/.*"
   ],
   "homepage": "https://github.com/JanMiksovsky/globalize-culture",
-  "_release": "704eef7b16",
+  "_release": "2f479c064b",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "704eef7b168abd75d1a6f5870d92be362515e814"
+    "commit": "2f479c064b91da03aad8c1822ff0ace1577b36a8"
   },
   "_source": "git://github.com/JanMiksovsky/globalize-culture.git",
   "_target": "master",
