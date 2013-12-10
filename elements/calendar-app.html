@@ -24,34 +24,16 @@ Lets user preview, configure, and print an annual wall calendar.
     font-size: 15px;
   }
 
-  #main {
-    border-collapse: collapse;
-    margin: 2em auto;
-  }
-
-  td {
+  tr:not(:last-child) td {
     padding-bottom: 2em;
+  }
+  td {
     vertical-align: top;
   }
   td:not(:first-child) {
     padding-left: 2em;
   }
 
-/*  .table {
-    display: table;
-  }
-  .table > * {
-    display: table-row;
-  }
-  .table > * > * {
-    display: table-cell;
-  }
-*/
-/*  #container > :not(last-child) {
-    margin-bottom: 2em;
-    margin-right: 2em;
-  }
-*/
   intro-note {
     width: 350px;
   }
@@ -65,27 +47,33 @@ Lets user preview, configure, and print an annual wall calendar.
   }
 
   @media screen {  
+    #main {
+      border-collapse: collapse;
+      margin: 2em auto;
+    }
     year-calendar {
       background: white;
       box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
       padding: 2em;
     }
   }
-
-  globalize-culture {
-    display: block;
+  
+  @media print {
+    .noprint {
+      display: none;
+    }
   }
   </style>
 
   <table id="main">
 
-    <tr>
+    <tr class="noprint">
       <td>
-        <intro-note id="intro" class="noprint">
+        <intro-note id="intro">
         </intro-note>
       </td>
       <td>
-        <world-map class="noprint" culture="{{culture}}"></world-map>
+        <world-map culture="{{culture}}"></world-map>
       </td>
     </tr>
 
@@ -95,15 +83,15 @@ Lets user preview, configure, and print an annual wall calendar.
       </td>
     </tr>
 
-    <tr>
+    <tr class="noprint">
       <td colspan="2">
         <year-calendar id="currentYearCalendar" culture="{{culture}}"></year-calendar>
       </td>
     </tr>
 
-    <tr>
+    <tr class="noprint">
       <td>
-        <sticky-note id="tips" class="noprint">
+        <sticky-note id="tips">
           <b>Tip:</b> In the print dialog…
           <ul>
             <li>Turn <b>off</b> "Headers and Footers".</li>
