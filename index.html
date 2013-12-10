@@ -19,12 +19,13 @@ body {
   margin-top: 300px;
   text-align: center;
 }
-#loading span {
+#message {
   background: #fffacd;
   box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
+  display: inline-block;
   font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
-  padding: 1.5em;
+  padding: 2em;
 }
 
 @media print {
@@ -36,8 +37,15 @@ body {
 
 <script>
 window.addEventListener( "WebComponentsReady", function() {
+  // Check to see if app was really loaded.
+  var calendar = document.querySelector( "calendar-app" );
   var loading = document.querySelector( "#loading" );
-  loading.style.display = "none";
+  if ( !calendar.shadowRoot ) {
+    var message = document.querySelector( "#message" );
+    message.textContent = "Sorry, but this browser isn't supported yet.";
+  } else {
+    loading.style.display = "none";
+  }
 });
 </script>
 
@@ -45,7 +53,7 @@ window.addEventListener( "WebComponentsReady", function() {
 
 <body>
   <div id="loading">
-    <span>Just a second…</span>
+    <div id="message">Just a second…</div>
   </div>
   <calendar-app></calendar-app>
 </body>
