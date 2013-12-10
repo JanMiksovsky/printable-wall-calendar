@@ -3,7 +3,15 @@ Displays an entire year in a 4x3 grid.
 -->
 
 <link rel="import" href="../components/polymer/polymer.html">
+<!--
+By rights, this file should import quetzal-days-of-week because it uses that
+element. However, the calendar which follows it *also* uses that same element,
+and the polyfill complains that the element is registered twice. Until that's
+straightened out, we take advantage of the fact that we secretely know the
+calendar will import the quetzal-days-of-week element.
+
 <link rel="import" href="../components/quetzal-days-of-week/quetzal-days-of-week">
+-->
 <link rel="import" href="../components/quetzal-calendar-month-with-headings/quetzal-calendar-month-with-headings.html">
 
 <polymer-element name="year-calendar" attributes="culture year">
