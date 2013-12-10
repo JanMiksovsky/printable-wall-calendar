@@ -21,6 +21,18 @@ calendar will import the quetzal-days-of-week element.
   <style>
   :host {
     display: inline-block;
+    position: relative;
+  }
+
+  #contentContainer {
+    position: absolute;
+    right: 2em;
+    top: 2em;
+  }
+  @media print {
+    #contentContainer {
+      display: none;
+    }
   }
 
   #year {
@@ -99,8 +111,12 @@ calendar will import the quetzal-days-of-week element.
   }
   </style>
 
+  <div id="contentContainer">
+    <content></content>
+  </div>
+
   <h1 id="year"></h1>
-  <content></content>
+
   <div id="monthGrid">
     <div class="monthsRow" id="daysOfWeekHeader">
       <div>
