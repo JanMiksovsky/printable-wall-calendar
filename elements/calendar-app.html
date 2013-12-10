@@ -77,18 +77,18 @@ Lets user preview, configure, and print an annual wall calendar.
       </td>
     </tr>
 
-    <tr>
+    <tr id="yearRowNext">
       <td colspan="2">
-        <year-calendar id="nextYearCalendar" culture="{{culture}}">
-          <button>Print</button>
+        <year-calendar id="calendarNext" culture="{{culture}}">
+          <button class="noprint" on-click="{{printNextYear}}">Print</button>
         </year-calendar>
       </td>
     </tr>
 
-    <tr class="noprint">
+    <tr id="yearRowCurrent" class="noprint">
       <td colspan="2">
-        <year-calendar id="currentYearCalendar" culture="{{culture}}">
-          <button>Print</button>
+        <year-calendar id="calendarCurrent" culture="{{culture}}">
+          <button class="noprint" on-click="{{printCurrentYear}}">Print</button>
         </year-calendar>
       </td>
     </tr>
@@ -117,7 +117,20 @@ Polymer( "calendar-app", {
   ready: function() {
     // Set date of calendar for next year.
     var date = new Date();
-    this.$.nextYearCalendar.year = date.getFullYear() + 1;
+    this.$.calendarNext.year = date.getFullYear() + 1;
+  },
+
+  printCurrentYear: function() {
+    // Temporarily make the current year the one which will be printed.
+    this.$.yearRowNext.classList.toggle( "noprint", true );
+    this.$.yearRowCurrent.classList.toggle( "noprint", false );
+    window.print();
+    this.$.yearRowNext.classList.toggle( "noprint", false );
+    this.$.yearRowCurrent.classList.toggle( "noprint", true );
+  },
+
+  printNextYear: function() {
+    window.print();
   }
 
 });
