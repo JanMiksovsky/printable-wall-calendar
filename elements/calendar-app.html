@@ -12,6 +12,10 @@ Lets user preview, configure, and print an annual wall calendar.
 <template>
 
   <style>
+  :host {
+    padding: 2em;
+  }
+
   :host,
   input,
   select {
@@ -19,15 +23,34 @@ Lets user preview, configure, and print an annual wall calendar.
     font-size: 15px;
   }
 
-  #container {
-    padding: 2em;
+  #main {
+    border-collapse: collapse;
+    margin: 2em;
   }
 
-  #container > :not(last-child) {
+  td {
+    padding-bottom: 2em;
+    vertical-align: top;
+  }
+  td:not(:first-child) {
+    padding-left: 2em;
+  }
+
+/*  .table {
+    display: table;
+  }
+  .table > * {
+    display: table-row;
+  }
+  .table > * > * {
+    display: table-cell;
+  }
+*/
+/*  #container > :not(last-child) {
     margin-bottom: 2em;
     margin-right: 2em;
   }
-
+*/
   world-map {
     width: 400px;
   }
@@ -49,24 +72,42 @@ Lets user preview, configure, and print an annual wall calendar.
   }
   </style>
 
-  <div id="container">
+  <table id="main">
 
-    <sticky-note id="intro" class="noprint">
-      <h3>Print a handy wall calendar!</h3>
-    </sticky-note>
+    <tr>
+      <td>
+        <sticky-note id="intro" class="noprint">
+          <h3>Print a handy wall calendar!</h3>
+        </sticky-note>
+      </td>
+      <td>
+        <world-map culture="{{culture}}"></world-map>
+      </td>
+    </tr>
 
-    <world-map culture="{{culture}}"></world-map>
+    <tr>
+      <td colspan="2">
+        <year-calendar id="nextYearCalendar" culture="{{culture}}"></year-calendar>
+      </td>
+    </tr>
 
-    <year-calendar id="nextYearCalendar" culture="{{culture}}"></year-calendar>
-    <year-calendar id="currentYearCalendar" culture="{{culture}}"></year-calendar>
+    <tr>
+      <td colspan="2">
+        <year-calendar id="currentYearCalendar" culture="{{culture}}"></year-calendar>
+      </td>
+    </tr>
 
-    <sticky-note id="tips" class="noprint">
-      <b>Tip:</b> In the print dialog…
-      <ul>
-        <li>Turn <b>off</b> "Headers and Footers".</li>
-        <li>Turn <b>on</b> "Background colors and images".</li>
-      </ul>
-    </sticky-note>
+    <tr>
+      <td>
+        <sticky-note id="tips" class="noprint">
+          <b>Tip:</b> In the print dialog…
+          <ul>
+            <li>Turn <b>off</b> "Headers and Footers".</li>
+            <li>Turn <b>on</b> "Background colors and images".</li>
+          </ul>
+        </sticky-note>
+      </td>
+    </tr>
 
   </div>
 
