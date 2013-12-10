@@ -3,6 +3,7 @@ Lets user preview, configure, and print an annual wall calendar.
 -->
 
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="intro-note.html">
 <link rel="import" href="sticky-note.html">
 <link rel="import" href="world-map.html">
 <link rel="import" href="year-calendar.html">
@@ -51,8 +52,12 @@ Lets user preview, configure, and print an annual wall calendar.
     margin-right: 2em;
   }
 */
+  intro-note {
+    width: 350px;
+  }
+
   world-map {
-    width: 400px;
+    width: 375px;
   }
 
   year-calendar {
@@ -76,12 +81,11 @@ Lets user preview, configure, and print an annual wall calendar.
 
     <tr>
       <td>
-        <sticky-note id="intro" class="noprint">
-          <h3>Print a handy wall calendar!</h3>
-        </sticky-note>
+        <intro-note id="intro" class="noprint">
+        </intro-note>
       </td>
       <td>
-        <world-map culture="{{culture}}"></world-map>
+        <world-map class="noprint" culture="{{culture}}"></world-map>
       </td>
     </tr>
 
