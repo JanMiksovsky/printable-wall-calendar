@@ -13,8 +13,14 @@
     padding: 1.5em;
   }
 
+  /* @polyfill intro-note > :first-child */
   ::content > :first-child {
     margin-top: 0;
+  }
+
+  /* @polyfill intro-note > :last-child */
+  ::content > :last-child {
+    margin-bottom: 0;
   }
 
   li {
@@ -25,8 +31,8 @@
 
   <h2>Printable Wall Calendar</h2>
   <p>
-    This calendar can quickly answer two questions that often come up in
-    scheduling discussions:
+    This printable wall calendar is faster than a high-tech device at answering
+    two common scheduling questions:
   </p>
   <ol>
     <li>
@@ -38,6 +44,10 @@
       Example: What date is Thursday next week?
     </li>
   </ol>
+  <p>
+    Print out a calendar for next year (or this year, further below) for the
+    wall of your office or conference room and it'll make scheduling easier!
+  </p>
 
 </template>
 
