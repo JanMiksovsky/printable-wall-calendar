@@ -26,9 +26,6 @@ Lets user preview, configure, and print an annual wall calendar.
     font-size: 15px;
   }
 
-  tr:not(:last-child) td {
-    padding-bottom: 2em;
-  }
   td {
     vertical-align: top;
   }
@@ -48,10 +45,28 @@ Lets user preview, configure, and print an annual wall calendar.
     font-size: 21px;
   }
 
+  #footer {
+    text-align: center;
+  }
+  #footNote {
+    display: inline-block; /* For some reason, only necessary when polyfilled. */
+    text-align: left;
+  }
+  #sourceLink {
+    color: inherit;
+    text-decoration: none;
+  }
+  #sourceLink:hover {
+    text-decoration: underline;
+  }
+
   @media screen {  
     #main {
       border-collapse: collapse;
       margin: 2em auto;
+    }
+    tr:not(:last-child) td {
+      padding-bottom: 2em;
     }
     year-calendar {
       background: white;
@@ -71,8 +86,7 @@ Lets user preview, configure, and print an annual wall calendar.
 
     <tr class="noprint">
       <td>
-        <intro-note id="intro">
-        </intro-note>
+        <intro-note id="intro"></intro-note>
       </td>
       <td>
         <world-map culture="{{culture}}"></world-map>
@@ -96,18 +110,15 @@ Lets user preview, configure, and print an annual wall calendar.
     </tr>
 
     <tr class="noprint">
-      <td>
-        <sticky-note id="tips">
-          <b>Tip:</b> In the print dialog…
-          <ul>
-            <li>Turn <b>off</b> "Headers and Footers".</li>
-            <li>Turn <b>on</b> "Background colors and images".</li>
-          </ul>
+      <td id="footer" colspan="2">
+        <sticky-note id="footNote">
+          ©2013 Jan Miksovsky<br>
+          <a id="sourceLink" href="https://github.com/JanMiksovsky/printable-wall-calendar">View the source code</a>
         </sticky-note>
       </td>
     </tr>
 
-  </div>
+  </table>
 
 </template>
 
