@@ -28,9 +28,13 @@ Lets user preview, configure, and print an annual wall calendar.
 
   td {
     vertical-align: top;
+    text-align: center;
   }
   td:not(:first-child) {
     padding-left: 2em;
+  }
+  td > * {
+    text-align: left;
   }
 
   intro-note {
@@ -45,12 +49,8 @@ Lets user preview, configure, and print an annual wall calendar.
     font-size: 21px;
   }
 
-  #footer {
-    text-align: center;
-  }
   #footNote {
     display: inline-block; /* For some reason, only necessary when polyfilled. */
-    text-align: left;
   }
   #sourceLink {
     color: inherit;
@@ -76,6 +76,9 @@ Lets user preview, configure, and print an annual wall calendar.
   }
   
   @media print {
+    #main {
+      margin: 0 auto;
+    }
     .noprint {
       display: none;
     }
