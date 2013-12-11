@@ -23,7 +23,7 @@ body {
   background: #fffacd;
   box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
   display: inline-block;
-  font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Myriad Pro", Calibri, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   padding: 2em;
 }
@@ -53,7 +53,13 @@ window.addEventListener( "WebComponentsReady", function() {
 
 <body>
   <div id="loading">
-    <div id="message">Just a second…</div>
+    <div id="message">
+      <p style="font-size: larger; margin-top: 0;">Setting up…<p>
+      <p style="margin-bottom: 0;">
+        On some browsers, this can take quite a while.<br>
+        Please be patient!
+      </p>
+    </div>
   </div>
   <calendar-app></calendar-app>
 </body>
