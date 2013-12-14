@@ -415,9 +415,7 @@ Polymer( "globalize-culture", {
       // Dynamically load the culture file from the sibling Globalize component.
       var cultureSettingsUrl = "../globalize/lib/cultures/globalize.culture." + cultureIdentifier + ".js";
       // Find the culture file relative to this file.
-      // TODO: Use document.currentScript once that's working. For now (12/9/13),
-      // Polymer's recommendation is to use _currentScript.
-      var url = HTMLImports.path.resolveUrl( GlobalizeCulture._scriptPath, cultureSettingsUrl );
+      var url = this.resolvePath( cultureSettingsUrl );
       var script = document.createElement( "script" );
       script.addEventListener( "load", function() {
         callback();
