@@ -1,15 +1,16 @@
 {
-  "name": "annual-calendar",
-  "version": "0.0.1",
+  "name": "printable-wall-calendar",
+  "version": "2.0.0",
   "dependencies": {
-    "globalize-culture": "JanMiksovsky/globalize-culture#master",
-    "polymer": "Polymer/polymer#master",
-    "quetzal-button": "JanMiksovsky/quetzal-button#master",
-    "quetzal-calendar-month-with-headings": "JanMiksovsky/quetzal-calendar-month-with-headings#master",
-    "quetzal-days-of-week": "JanMiksovsky/quetzal-days-of-week#master"
+    "basic-culture-selector": "basic-web-components/basic-culture-selector#master",
+    "polymer": "Polymer/polymer#0.5.2",
+    "basic-button": "basic-web-components/basic-button#master",
+    "basic-calendar-month": "basic-web-components/basic-calendar-month#master",
+    "basic-days-of-week": "basic-web-components/basic-days-of-week#master"
   },
-  "ignore": [
-    "**/.*",
-    "components"
-  ]
+  "resolutions": {
+    "polymer": "0.5.2",
+    "core-component-page": "^0.5.0",
+    "webcomponentsjs": "^0.5.0"
+  }
 }
