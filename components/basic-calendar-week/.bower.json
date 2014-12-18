@@ -1,0 +1,29 @@
+{
+  "name": "basic-calendar-week",
+  "description": "A single week in a calendar",
+  "license": "MIT",
+  "main": "basic-calendar-week.html",
+  "dependencies": {
+    "basic-element": "basic-web-components/basic-element#master"
+  },
+  "devDependencies": {
+    "basic-framed-content": "basic-web-components/basic-framed-content#master"
+  },
+  "keywords": [
+    "basic-web-components",
+    "web-components"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "homepage": "https://github.com/basic-web-components/basic-calendar-week",
+  "_release": "a31f516487",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a31f516487325de41d63ce642e161c31591ffc21"
+  },
+  "_source": "git://github.com/basic-web-components/basic-calendar-week.git",
+  "_target": "master",
+  "_originalSource": "basic-web-components/basic-calendar-week"
+}

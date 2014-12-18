@@ -1,0 +1,20 @@
+{
+  "name": "basic-calendar-week",
+  "description": "A single week in a calendar",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "basic-calendar-week.html",
+  "dependencies": {
+    "basic-element": "basic-web-components/basic-element#master"
+  },
+  "devDependencies": {
+    "basic-framed-content": "basic-web-components/basic-framed-content#master"
+  },
+  "keywords": [
+    "basic-web-components",
+    "web-components"
+  ],
+  "ignore": [
+    "**/.*"
+  ]
+}
