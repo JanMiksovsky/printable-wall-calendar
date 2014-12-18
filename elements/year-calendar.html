@@ -6,7 +6,7 @@ Displays an entire year in a 4x3 grid.
 <!--
 By rights, this file should import basic-days-of-week because it uses that
 element. However, the calendar which follows it *also* uses that same element,
-and the polyfill complains that the element is registered twice. Until that's
+and Polymer complains that the element is registered twice. Until that's
 straightened out, we take advantage of the fact that we secretely know the
 calendar will import the basic-days-of-week element.
 
@@ -65,11 +65,11 @@ calendar will import the basic-days-of-week element.
   }
 
   /* Override generic calendar styling */
-  basic-days-of-week ^ .dayOfWeek {
+  basic-days-of-week::shadow .dayOfWeek {
     padding: 0 1px !important;
     white-space: nowrap;
   }
-  basic-days-of-week ^ .dayOfWeek.weekend {
+  basic-days-of-week::shadow .dayOfWeek.weekend {
     color: #a6a6a6 !important;
   }
 
@@ -78,31 +78,31 @@ calendar will import the basic-days-of-week element.
   basic-calendar-month {
     position: relative;
   }
-  basic-calendar-month.sixWeekMonth ^ quetzal-month-and-year {
+  basic-calendar-month.sixWeekMonth::shadow basic-month-and-year {
     position: absolute;
   }
 
-  basic-calendar-month ^ quetzal-month-and-year {
+  basic-calendar-month::shadow basic-month-and-year {
     color: #990000;
     text-align: left !important;
   }
-  basic-calendar-month ^ quetzal-month-and-year ^ #year {
+  basic-calendar-month::shadow basic-month-and-year::shadow #year {
     display: none;
   }
 
   /* Suppress days of week headers on individual months  */
-  basic-calendar-month ^ basic-days-of-week {
+  basic-calendar-month::shadow basic-days-of-week {
     display: none !important;
   }
 
-  quetzal-calendar-day {
+  basic-calendar-month::shadow basic-calendar-month-days::shadow basic-calendar-week::shadow basic-calendar-day {
     font-weight: bold;
     padding: 3px 3px !important;
   }
-  quetzal-calendar-day.today {
+  basic-calendar-month::shadow basic-calendar-month-days::shadow basic-calendar-week::shadow basic-calendar-day.today {
     color: inherit !important;
   }
-  quetzal-calendar-day.weekend.insideMonth {
+  basic-calendar-month::shadow basic-calendar-month-days::shadow basic-calendar-week::shadow basic-calendar-day.weekend.insideMonth {
     color: #a6a6a6 !important;
   }
   </style>
