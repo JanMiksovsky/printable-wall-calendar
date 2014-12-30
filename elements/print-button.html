@@ -1,5 +1,5 @@
 <link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../components/quetzal-button/quetzal-button.html">
+<link rel="import" href="../components/basic-button/basic-button.html">
 
 <polymer-element name="print-button" noscript>
 
@@ -19,7 +19,7 @@
     vertical-align: middle;
   }
 
-  quetzal-button:hover #icon {
+  basic-button:hover #icon {
     opacity: 1.0;
   }
 
@@ -42,10 +42,10 @@
     display: block;
   }
   </style>
-  <quetzal-button quiet>
+  <basic-button quiet>
     <img id="icon" src="../resources/printer.png">
     <span>Print</span>
-  </quetzal-button>
+  </basic-button>
   <div id="tooltip">
     Tip: When the print dialog appears, turn <b>off</b> headers/footers, and
     turn <b>on</b> background images/colors.

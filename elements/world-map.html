@@ -1,7 +1,7 @@
 <link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../components/globalize-culture/globalize-culture.html">
+<link rel="import" href="../components/basic-culture-selector/basic-culture-selector.html">
 
-<polymer-element name="world-map" attributes="culture">
+<polymer-element name="world-map" attributes="culture" noscript>
 
 <template>
 
@@ -37,17 +37,11 @@
 
   <img id="map" src="../resources/map.jpg">
   <div id="cultureContainer">
-  <globalize-culture id="cultureSelector" culture="{{culture}}">
+  <basic-culture-selector id="cultureSelector" culture="{{culture}}">
     <div>Pick your preferred language/location:</div>
-  </globalize-culture>
+  </basic-culture-selector>
   </div>
 
 </template>
-
-<script>
-Polymer( "world-map", {
-  applyAuthorStyles: true
-});
-</script>
 
 </polymer-element>

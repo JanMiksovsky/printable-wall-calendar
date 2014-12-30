@@ -4,15 +4,15 @@ Displays an entire year in a 4x3 grid.
 
 <link rel="import" href="../components/polymer/polymer.html">
 <!--
-By rights, this file should import quetzal-days-of-week because it uses that
+By rights, this file should import basic-days-of-week because it uses that
 element. However, the calendar which follows it *also* uses that same element,
-and the polyfill complains that the element is registered twice. Until that's
+and Polymer complains that the element is registered twice. Until that's
 straightened out, we take advantage of the fact that we secretely know the
-calendar will import the quetzal-days-of-week element.
+calendar will import the basic-days-of-week element.
 
-<link rel="import" href="../components/quetzal-days-of-week/quetzal-days-of-week">
+<link rel="import" href="../components/basic-days-of-week/basic-days-of-week">
 -->
-<link rel="import" href="../components/quetzal-calendar-month-with-headings/quetzal-calendar-month-with-headings.html">
+<link rel="import" href="../components/basic-calendar-month/basic-calendar-month.html">
 
 <polymer-element name="year-calendar" attributes="culture year">
 
@@ -58,51 +58,51 @@ calendar will import the quetzal-days-of-week element.
     padding-bottom: 0.25em;
   }
 
-  #daysOfWeekHeader quetzal-days-of-week {
+  #daysOfWeekHeader basic-days-of-week {
     display: table;
     font-size: 0.65em;
     width: 100%;
   }
 
   /* Override generic calendar styling */
-  quetzal-days-of-week ^ .dayOfWeek {
+  basic-days-of-week::shadow .dayOfWeek {
     padding: 0 1px !important;
     white-space: nowrap;
   }
-  quetzal-days-of-week ^ .dayOfWeek.weekend {
+  basic-days-of-week::shadow .dayOfWeek.weekend {
     color: #a6a6a6 !important;
   }
 
   /* Have the month header for six week months nestle in the empty space
      to the left of the first day of the month */
-  quetzal-calendar-month-with-headings {
+  basic-calendar-month {
     position: relative;
   }
-  quetzal-calendar-month-with-headings.sixWeekMonth ^ quetzal-month-and-year {
+  basic-calendar-month.sixWeekMonth::shadow basic-month-and-year {
     position: absolute;
   }
 
-  quetzal-calendar-month-with-headings ^ quetzal-month-and-year {
+  basic-calendar-month::shadow basic-month-and-year {
     color: #990000;
     text-align: left !important;
   }
-  quetzal-calendar-month-with-headings ^ quetzal-month-and-year ^ #year {
+  basic-calendar-month::shadow basic-month-and-year::shadow #year {
     display: none;
   }
 
   /* Suppress days of week headers on individual months  */
-  quetzal-calendar-month-with-headings ^ quetzal-days-of-week {
+  basic-calendar-month::shadow basic-days-of-week {
     display: none !important;
   }
 
-  quetzal-calendar-day {
+  basic-calendar-month::shadow basic-calendar-month-days::shadow basic-calendar-week::shadow basic-calendar-day {
     font-weight: bold;
     padding: 3px 3px !important;
   }
-  quetzal-calendar-day.today {
+  basic-calendar-month::shadow basic-calendar-month-days::shadow basic-calendar-week::shadow basic-calendar-day.today {
     color: inherit !important;
   }
-  quetzal-calendar-day.weekend.insideMonth {
+  basic-calendar-month::shadow basic-calendar-month-days::shadow basic-calendar-week::shadow basic-calendar-day.weekend.insideMonth {
     color: #a6a6a6 !important;
   }
   </style>
@@ -116,34 +116,34 @@ calendar will import the quetzal-days-of-week element.
   <div id="monthGrid">
     <div class="monthsRow" id="daysOfWeekHeader">
       <div>
-        <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
+        <basic-days-of-week format="namesAbbr"></basic-days-of-week>
       </div>
       <div>
-        <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
+        <basic-days-of-week format="namesAbbr"></basic-days-of-week>
       </div>
       <div>
-        <quetzal-days-of-week format="namesAbbr"></quetzal-days-of-week>
+        <basic-days-of-week format="namesAbbr"></basic-days-of-week>
       </div>
     </div>
     <div class="monthsRow">
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
+      <basic-calendar-month></basic-calendar-month>
+      <basic-calendar-month></basic-calendar-month>
+      <basic-calendar-month></basic-calendar-month>
     </div>
     <div class="monthsRow">
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
+      <basic-calendar-month></basic-calendar-month>
+      <basic-calendar-month></basic-calendar-month>
+      <basic-calendar-month></basic-calendar-month>
     </div>
     <div class="monthsRow">
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
+      <basic-calendar-month></basic-calendar-month>
+      <basic-calendar-month></basic-calendar-month>
+      <basic-calendar-month></basic-calendar-month>
     </div>
     <div class="monthsRow">
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
-      <quetzal-calendar-month-with-headings></quetzal-calendar-month-with-headings>
+      <basic-calendar-month></basic-calendar-month>
+      <basic-calendar-month></basic-calendar-month>
+      <basic-calendar-month></basic-calendar-month>
     </div>
   </div>
 
@@ -157,7 +157,7 @@ Polymer( "year-calendar", {
   cultureChanged: function() {
     var culture = this.culture;
     if ( culture ) {
-      var weekHeaders = this.$.daysOfWeekHeader.querySelectorAll( "quetzal-days-of-week" ).array();
+      var weekHeaders = this.$.daysOfWeekHeader.querySelectorAll( "basic-days-of-week" ).array();
       weekHeaders.forEach( function( weekHeader ) {
         weekHeader.culture = culture;
       });
@@ -176,7 +176,7 @@ Polymer( "year-calendar", {
   },
 
   get months() {
-    return this.shadowRoot.querySelectorAll( "quetzal-calendar-month-with-headings" ).array();
+    return this.shadowRoot.querySelectorAll( "basic-calendar-month" ).array();
   },
 
   yearChanged: function() {
