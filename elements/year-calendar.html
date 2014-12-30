@@ -189,8 +189,11 @@ Polymer( "year-calendar", {
     this.months.forEach( function( month, index ) {
       var firstDateOfMonth = new Date();
       firstDateOfMonth.setFullYear( year );
-      firstDateOfMonth.setMonth( index );
+      //firstDateOfMonth is initialized to today. If index month has fewer days than the current month, 
+      //setting the month on firstDateOfMonth while the date is still today's date will move firstDateOfMonth 
+      //to the next month. So set the date to the first before setting the month (all months have a first).
       firstDateOfMonth.setDate( 1 );
+      firstDateOfMonth.setMonth( index );
       month.date = firstDateOfMonth;
 
       // Get last day of month by going to first day of next month and backing up a day.
