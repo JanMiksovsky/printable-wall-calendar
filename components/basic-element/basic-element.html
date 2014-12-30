@@ -1,0 +1,216 @@
+<!--
+  
+Base class for some of the elements in the Basic Web Components collection.
+
+This provides some services which aren't provided by the browser or Polymer.
+Right now, this includes:
+
+* Generic styling. A "generic" attribute, which defaults to true, allows
+  elements to receive baseline styling that can easily be removed by setting
+  "generic" to false.
+
+* contentChanged. A callback invoked when an element's light DOM content changes.
+  This is also invoked if the element contains a <content> node and new nodes
+  are distributed to that. Note: if an element has an attached callback, the
+  callback should invoke this.super() for contentChanged to work.
+
+* Content flattening. General-purpose composable elements need to be able to
+  walk their content tree, including distributed content. This class defines
+  helpers called flattenChildren, flattenChildNodes, flattenTextContent that
+  parallel the standard children, childNodes, and textContent properties,
+  respectively, expanding any content nodes to include distributed content.
+
+@element basic-element
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+
+<polymer-element name="basic-element">
+
+<script>
+/*
+ * Basic helpers.
+ *
+ * These can be included in any element with the use of Platform.mixin():
+ *
+ * Polymer( Platform.mixin( BasicWebComponents, {
+ *   // Your own properties/methods go here.
+ * }));
+ *
+ */
+window.BasicWebComponents = {
+
+  /*
+   * Returns an in-order collection of children, expanding any content nodes.
+   * Like the standard children property, this skips text nodes.
+   *
+   * TODO: This walks the whole content tree every time the list is requested.
+   * It'd be nice to cache the answer and invalidate it only when content
+   * actually changes.
+   */
+  get flattenChildren() {
+    return this._flatten( this.children, false );
+  },
+
+  /*
+   * Returns an in-order collection of child nodes, expanding any content nodes.
+   * Like the standard childNodes property, this includes text nodes.
+   */
+  get flattenChildNodes() {
+    return this._flatten( this.childNodes, true );
+  },
+
+  get flattenTextContent() {
+    var strings = this.flattenChildNodes.map( function( node ) {
+      return node.textContent;
+    });
+    return strings.join( "" );
+  },
+
+  // Return the host element for this element. If this element is not hosted by
+  // another element (it's not attached to anything, or is hosted by the
+  // top-level document), this returns null.
+  get host() {
+    for ( var parent = this.parentNode; parent != null; parent = parent.parentNode ) {
+      if ( parent.host ) {
+        return parent.host;
+      }
+    }
+  },
+
+  // Log output to the console prefixed by the element's tag. This makes it
+  // easier to see which element is logging the output.
+  log: function( s ) {
+    if ( console ) {
+      console.log( this.localName + ": " + s );
+    }
+  },
+
+  /*
+   * Do the standard work a basic element wants in its attached handler.
+   */
+  _basicAttached: function() {
+    // If the element has a contentChanged handler, then wire up an observer for
+    // content change events.
+    if ( this.contentChanged ) {
+      this._observeContentChanged( this, function() {
+        this._observeContentChangedHandler();
+      }.bind( this ));
+      if ( this.childNodes.length > 0 ) {
+        // Consider any initial content of a new element to be "changed" content.
+        this._observeContentChangedHandler();
+      }
+    }    
+  },
+
+  /*
+   * Given a node, return the children of that element. If any of the children
+   * are content elements, instead of returning the content element, return the
+   * nodes distributed to it. (Apply this rule recursively.)
+   *
+   * If includeTextNodes is true, text nodes will be included, as in the
+   * standard childNodes property; by default, this skips text nodes, like the
+   * standard children property.
+   */
+  _flatten: function( nodes, includeTextNodes ) {
+    var expanded = Array.prototype.map.call( nodes, function( node ) {
+      if ( node instanceof HTMLContentElement ) {
+        // content element; use its distributed nodes instead.
+        return this._flatten( node.getDistributedNodes(), includeTextNodes );
+      } else if ( node instanceof HTMLElement ) {
+        // Plain element; use as is.
+        return [ node ];
+      } else if ( node instanceof Text && includeTextNodes ) {
+        // Text node.
+        return [ node ];
+      } else {
+        // Comment, processing instruction, etc.; skip.
+        return [];
+      }
+    }.bind( this ));
+    var flattened = Array.prototype.concat.apply( [], expanded );
+    return flattened;
+  },
+
+  // Wire up an observer for (light DOM) content change events on the given
+  // node.
+  _observeContentChanged: function( node, handler ) {
+    var observer = new MutationObserver( handler );
+    observer.observe( node, {
+      characterData: true,
+      childList: true,
+      subtree: true
+    });
+  },
+
+  _observeContentChangedHandler: function() {
+    var containsContentNode = ( this.querySelector( "content" ) != null );
+    if ( containsContentNode ) {
+      // The element's new content contains <content> nodes, so from now on,
+      // we need to observe our host element, too.
+      // TODO: If this element's content changes again, disconnect any
+      // outstanding observers of that old content.
+      // TODO: If the host element *also* contains <content> nodes, we should
+      // watch those too. *sigh*
+      this._observeHostContentChanged();
+    }
+    this.contentChanged();
+  },
+
+  _observeHostContentChanged: function() {
+    var host = this.host;
+    if ( host ) {
+      this._observeContentChanged( host, function() {
+        this.contentChanged();
+      }.bind( this ));
+    }
+  }
+
+};
+
+
+
+/*
+ * Basic element base class.
+ */
+Polymer( Platform.mixin({
+
+  attached: function() {
+    this._basicAttached();
+  },
+
+  ready: function() {
+    this.super();
+    this.setup();
+  },
+
+  publish: {
+    generic: {
+      value: null,
+      reflect: true
+    }
+  },
+
+  setup: function() {
+    // We explicitly set the generic attribute to true, rather than providing
+    // that as a default value. A default value won't appear on an element
+    // instance as an attribute, but an attribute we set explicitly will. We
+    // need the attribute there so that generic styling can be set simply by
+    // defining rules like
+    //
+    //   :host([generic=""]) {
+    //     ...
+    //   }
+    //
+    if ( this.getAttribute( "generic" ) == null ) {
+      this.generic = true;
+    }
+  }
+
+// Mix BasicWebComponents in last; otherwise Polymer uses that element itself
+// in the basic-element prototype, which prevents other elements from mixing it
+// into their prototypes.
+}, BasicWebComponents ));
+</script>
+
+</polymer-element>

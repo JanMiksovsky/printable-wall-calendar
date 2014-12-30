@@ -1,0 +1,21 @@
+{
+  "name": "basic-calendar-day",
+  "description": "A single day in a calendar",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "basic-calendar-day.html",
+  "dependencies": {
+    "basic-element": "basic-web-components/basic-element#master"
+  },
+  "devDependencies": {
+    "basic-framed-content": "basic-web-components/basic-framed-content#master",
+    "basic-calendar-month": "basic-web-components/basic-calendar-month#master"
+  },
+  "keywords": [
+    "basic-web-components",
+    "web-components"
+  ],
+  "ignore": [
+    "**/.*"
+  ]
+}
