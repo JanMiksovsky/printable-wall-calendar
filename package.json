@@ -1,0 +1,8 @@
+{
+  "name": "printable-wall-calendar",
+  "version": "3.0.0",
+  "main": "server/app.js",
+  "dependencies": {
+    "elix": "github:elix/elix#3.4.1"
+  }
+}
