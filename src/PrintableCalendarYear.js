@@ -1,5 +1,5 @@
 import './PrintableCalendarMonth.js';
-import '../node_modules/elix/src/CalendarDayNamesHeader.js';
+import './PrintableCalendarDayNamesHeader.js';
 import { merge } from '../node_modules/elix/src/updates.js';
 import * as calendar from '../node_modules/elix/src/calendar.js';
 import * as symbols from '../node_modules/elix/src/symbols.js';
@@ -26,60 +26,74 @@ class PrintableCalendarYear extends Base {
     return template.html`
       <style>
         :host {
-          display: inline-block;
+          display: inline-grid;
+          font-size: 21px;
+          grid-column-gap: 1em;
+          grid-row-gap: 0.5em;
+          grid-template-columns: repeat(3, auto);
+        }
+
+        #year {
+          color: #990000;
+          font-size: 36px;
+          grid-column: 1 / span 3;
+          margin: 0;
+          text-align: left;
+        }
+
+        printable-calendar-day-names-header {
+          font-size: 14px;
         }
       </style>
 
       <h1 id="year"></h1>
-      <div id="monthGrid">
-        <div class="monthsRow" id="daysOfWeekHeader">
-          <div>
-            <elix-calendar-day-names-header format="short"></elix-calendar-day-names-header>
-          </div>
-          <div>
-            <elix-calendar-day-names-header format="short"></elix-calendar-day-names-header>
-          </div>
-          <div>
-            <elix-calendar-day-names-header format="short"></elix-calendar-day-names-header>
-          </div>
-        </div>
-        <div class="monthsRow">
-          <printable-calendar-month id="month0"></printable-calendar-month>
-          <printable-calendar-month id="month1"></printable-calendar-month>
-          <printable-calendar-month id="month2"></printable-calendar-month>
-        </div>
-        <div class="monthsRow">
-          <printable-calendar-month id="month3"></printable-calendar-month>
-          <printable-calendar-month id="month4"></printable-calendar-month>
-          <printable-calendar-month id="month5"></printable-calendar-month>
-        </div>
-        <div class="monthsRow">
-          <printable-calendar-month id="month6"></printable-calendar-month>
-          <printable-calendar-month id="month7"></printable-calendar-month>
-          <printable-calendar-month id="month8"></printable-calendar-month>
-        </div>
-        <div class="monthsRow">
-          <printable-calendar-month id="month9"></printable-calendar-month>
-          <printable-calendar-month id="month10"></printable-calendar-month>
-          <printable-calendar-month id="month11"></printable-calendar-month>
-        </div>
-      </div>
+
+      <printable-calendar-day-names-header id="header1" format="short"></printable-calendar-day-names-header>
+      <printable-calendar-day-names-header id="header2" format="short"></printable-calendar-day-names-header>
+      <printable-calendar-day-names-header id="header3" format="short"></printable-calendar-day-names-header>
+      
+      <printable-calendar-month id="month0"></printable-calendar-month>
+      <printable-calendar-month id="month1"></printable-calendar-month>
+      <printable-calendar-month id="month2"></printable-calendar-month>
+      <printable-calendar-month id="month3"></printable-calendar-month>
+      <printable-calendar-month id="month4"></printable-calendar-month>
+      <printable-calendar-month id="month5"></printable-calendar-month>
+      <printable-calendar-month id="month6"></printable-calendar-month>
+      <printable-calendar-month id="month7"></printable-calendar-month>
+      <printable-calendar-month id="month8"></printable-calendar-month>
+      <printable-calendar-month id="month9"></printable-calendar-month>
+      <printable-calendar-month id="month10"></printable-calendar-month>
+      <printable-calendar-month id="month11"></printable-calendar-month>
     `;
   }
 
   get updates() {
-    const { date } = this.state;
-    const monthsUpdates = {};
+    const { date, locale } = this.state;
+    const elementUpdates = {
+      header1: {
+        locale
+      },
+      header2: {
+        locale
+      },
+      header3: {
+        locale
+      },
+      year: {
+        textContent: date.getFullYear()
+      }
+    };
     for (let i = 0; i <= 11; i++) {
       const monthId = `month${i}`;
       const referenceDate = new Date(date.getTime());
       referenceDate.setMonth(i);
-      monthsUpdates[monthId] = {
-        date: referenceDate
+      elementUpdates[monthId] = {
+        date: referenceDate,
+        locale
       };
     }
     return merge(super.updates, {
-      $: monthsUpdates
+      $: elementUpdates
     });
   }
 

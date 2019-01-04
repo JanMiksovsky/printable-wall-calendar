@@ -3,12 +3,14 @@ import * as calendar from '../node_modules/elix/src/calendar.js'
 import * as symbols from '../node_modules/elix/src/symbols.js';
 import * as template from '../node_modules/elix/src/template.js';
 import CalendarMonth from '../node_modules/elix/src/CalendarMonth.js';
+import PrintableCalendarDay from './PrintableCalendarDay.js';
 
 
 class PrintableCalendarMonth extends CalendarMonth {
 
   get defaultState() {
     return Object.assign({}, super.defaultState, {
+      dayRole: PrintableCalendarDay,
       yearFormat: null // Hide year
     });
   }
@@ -23,16 +25,22 @@ class PrintableCalendarMonth extends CalendarMonth {
         }
 
         #monthYearHeader {
+          color: #990000;
+          font-size: 21px;
+          padding: 0.15em;
           text-align: left;
+        }
+
+        :host(.sixWeekMonth) #monthYearHeader {
+          position: absolute;
         }
 
         #weekDaysHeader {
           display: none;
         }
 
-        :host(.sixWeekMonth) #monthDays {
-          position: relative;
-          top: -1.7em;
+        #monthDays {
+          font-weight: bold;
         }
       </style>
     `;
