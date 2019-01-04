@@ -2,42 +2,18 @@
 <html>
 <head>
 
-<meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Printable Wall Calendar</title>
+  <title>Printable Wall Calendar</title>
 
-<link rel="import" href="elements/calendar-app.html">
-
-<style>
-body {
-  background-image: url(resources/cork.jpg);
-  margin: 0;
-}
-
-#loading {
-  margin-top: 300px;
-  text-align: center;
-}
-#message {
-  background: #fffacd;
-  box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.5 );
-  display: inline-block;
-  font-family: "Myriad Pro", Calibri, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  padding: 2em;
-}
-
-@media print {
-  body {
-    background-image: none;
-  }
-}
-</style>
+  <link rel="stylesheet" href="main.css">
+  <script type="module" src="src/PrintableCalendarApp.js"></script>
 
 </head>
 
 <body>
-  <calendar-app></calendar-app>
+  <printable-calendar-app></printable-calendar-app>
 </body>
 
 </html>

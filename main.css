@@ -1,0 +1,11 @@
+body {
+  font-family: "Myriad Pro", Calibri, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  margin: 0;
+}
+
+@media screen {
+  body {
+    background-image: url(resources/cork.jpg);
+  }
+}
