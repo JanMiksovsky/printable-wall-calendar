@@ -3,6 +3,6 @@
   "version": "3.0.0",
   "main": "index.html",
   "dependencies": {
-    "elix": "github:elix/elix#3.4.1"
+    "elix": "github:elix/elix#4.0.0-beta.0"
   }
 }

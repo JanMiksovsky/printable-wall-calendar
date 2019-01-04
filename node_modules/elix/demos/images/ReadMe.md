@@ -1,0 +1,1 @@
+These sample images came from publicdomainpictures.net and were represented as having a CC0 license.
