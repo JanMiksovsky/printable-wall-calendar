@@ -28,9 +28,9 @@ class PrintableCalendarYear extends Base {
         :host {
           display: inline-grid;
           font-size: 21px;
-          grid-column-gap: 1em;
-          grid-row-gap: 0.5em;
+          grid-gap: 1em;
           grid-template-columns: repeat(3, auto);
+          --weekend-day-color: gray;
         }
 
         #year {

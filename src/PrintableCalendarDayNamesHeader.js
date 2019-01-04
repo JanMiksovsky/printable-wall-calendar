@@ -10,7 +10,7 @@ class PrintableCalendarDayNamesHeader extends CalendarDayNamesHeader {
     const styleTemplate = template.html`
       <style>
         .dayOfWeek.weekend {
-          color: #a6a6a6;
+          color: var(--weekend-day-color);
         }
       </style>
     `;

@@ -19,7 +19,7 @@ class PrintableCalendarDay extends CalendarDay {
         }
 
         :host(.weekend) {
-          color: #a6a6a6;
+          color: var(--weekend-day-color);
         }
       </style>
     `;
