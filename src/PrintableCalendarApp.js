@@ -1,5 +1,6 @@
-import './PrintableCalendarYear.js';
 import './LocaleSelector.js';
+import './PrintableCalendarYear.js';
+import './PrintButton.js';
 import { html } from '../node_modules/elix/src/template.js';
 import { merge } from '../node_modules/elix/src/updates.js';
 import * as calendar from '../node_modules/elix/src/calendar.js';
@@ -23,11 +24,24 @@ class PrintableCalendarApp extends Base {
         locale: event.detail.value
       });
     });
+    this.$.printCurrent.addEventListener('click', async () => {
+      await this.setState({
+        printCalendar: 'current'
+      });
+      window.print();
+    });
+    this.$.printNext.addEventListener('click', async () => {
+      await this.setState({
+        printCalendar: 'next'
+      });
+      window.print();
+    });
   }
 
   get defaultState() {
     return Object.assign({}, super.defaultState, {
-      date: calendar.today()
+      date: calendar.today(),
+      printCalendar: 'next'
     });
   }
 
@@ -36,19 +50,19 @@ class PrintableCalendarApp extends Base {
       <style>
         :host {
           display: grid;
-          grid-column-gap: 2em;
-          grid-row-gap: 2em;
+          grid-gap: 2em;
           grid-template-columns: 1fr auto auto 1fr;
         }
 
         #intro {
           grid-column: 2;
-          width: 380px;
+          width: 450px;
         }
 
         #mapContainer {
           background: white;
           box-sizing: border-box;
+          justify-self: right;
           position: relative;
           width: 345px;
         }
@@ -66,8 +80,15 @@ class PrintableCalendarApp extends Base {
           background: white;
         }
 
-        printable-calendar-year {
+        .calendarContainer {
           grid-column: 2 / span 2;
+          position: relative;
+        }
+
+        print-button {
+          position: absolute;
+          top: 2em;
+          right: 2em;
         }
 
         #footnote {
@@ -98,7 +119,7 @@ class PrintableCalendarApp extends Base {
             margin: 2em;
           }
 
-          printable-calendar-year {
+          .calendarContainer {
             background: white;
             padding: 2em;
           }
@@ -142,8 +163,15 @@ class PrintableCalendarApp extends Base {
         </div>
       </div>
 
-      <printable-calendar-year id="calendarNext" class="shadowBox"></printable-calendar-year>
-      <printable-calendar-year id="calendarCurrent" class="shadowBox"></printable-calendar-year>
+      <div id="calendarNextContainer" class="calendarContainer shadowBox">
+        <printable-calendar-year id="calendarNext"></printable-calendar-year>
+        <print-button id="printNext" class="noPrint"></print-button>
+      </div>
+
+      <div id="calendarCurrentContainer" class="calendarContainer shadowBox">
+        <printable-calendar-year id="calendarCurrent" class="noPrint"></printable-calendar-year>
+        <print-button id="printCurrent" class="noPrint"></print-button>
+      </div>
 
       <div id="footnote">
         <div class="stickyNote noPrint shadowBox">
@@ -155,16 +183,22 @@ class PrintableCalendarApp extends Base {
   }
 
   get updates() {
-    const { date, locale } = this.state;
+    const { date, locale, printCalendar } = this.state;
     const nextDate = new Date(date.getTime());
     nextDate.setFullYear(date.getFullYear() + 1);
     return merge(super.updates, {
       $: {
         calendarCurrent: {
+          classes: {
+            noPrint: printCalendar !== 'current'
+          },
           date,
           locale
         },
         calendarNext: {
+          classes: {
+            noPrint: printCalendar !== 'next'
+          },
           date: nextDate,
           locale
         }
