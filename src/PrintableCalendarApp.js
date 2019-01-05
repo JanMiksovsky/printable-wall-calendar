@@ -130,6 +130,10 @@ class PrintableCalendarApp extends Base {
         }
 
         @media print {
+          :host {
+            grid-row-gap: 0; /* Avoid gap above/below printed calendar */
+          }
+
           .noPrint {
             display: none;
           }
