@@ -64,10 +64,11 @@ class PrintableCalendarApp extends Base {
           box-sizing: border-box;
           justify-self: right;
           position: relative;
-          width: 345px;
+          width: 350px;
         }
 
         #map {
+          box-sizing: border-box;
           display: block;
           opacity: 0.75;
           width: 100%;
@@ -87,8 +88,8 @@ class PrintableCalendarApp extends Base {
 
         print-button {
           position: absolute;
-          top: 2em;
-          right: 2em;
+          top: 30px;
+          right: 30px;
         }
 
         #footnote {
@@ -121,7 +122,7 @@ class PrintableCalendarApp extends Base {
 
           .calendarContainer {
             background: white;
-            padding: 2em;
+            padding: 40px;
           }
 
           .shadowBox {

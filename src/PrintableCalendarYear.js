@@ -26,9 +26,8 @@ class PrintableCalendarYear extends Base {
     return template.html`
       <style>
         :host {
-          display: inline-grid;
+          display: grid;
           font-size: 21px;
-          grid-gap: 1em;
           grid-template-columns: repeat(3, auto);
           --weekend-day-color: gray;
         }
@@ -37,12 +36,31 @@ class PrintableCalendarYear extends Base {
           color: #990000;
           font-size: 36px;
           grid-column: 1 / span 3;
+          line-height: 0.9em;
           margin: 0;
           text-align: left;
         }
 
         printable-calendar-day-names-header {
           font-size: 14px;
+        }
+
+        /* Hack for Edge, where printing doesn't respect grid-gap. */
+        #year,
+        printable-calendar-day-names-header,
+        printable-calendar-month {
+          margin: 0 22px 22px 0;
+        }
+
+        printable-calendar-day-names-header:nth-of-type(3),
+        printable-calendar-month:nth-of-type(3n) {
+          margin-right: 0;
+        }
+
+        printable-calendar-month:nth-of-type(10),
+        printable-calendar-month:nth-of-type(11),
+        printable-calendar-month:nth-of-type(12) {
+          margin-bottom: 0;
         }
       </style>
 

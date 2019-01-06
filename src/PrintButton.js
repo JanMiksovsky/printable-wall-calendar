@@ -63,8 +63,9 @@ class PrintButton extends Button {
         <span>Print</span>
       </button>
       <div id="tooltip">
-        Tip: When the print dialog appears, turn <b>off</b> headers/footers, and
-        turn <b>on</b> background images/colors.
+        Tip: When the print dialog appears, turn <b>off</b> headers/footers,
+        and turn <b>on</b> background images/colors. "Scale to Fit" and
+        narrow margins may also help.
       </div>
     `;
   }
